@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<cc:interface>
+	<cc:attribute name="bean" shortDescription="Nome do ManagedBean." required="true"/>
+	<cc:attribute name="colunasPanel" default="5" shortDescription="Qtd colunas default do painel: 5"/>
+</cc:interface>
+
+<cc:implementation>
+	
+	<p:panelGrid id="barraBotoes" columns="#{cc.attrs.colunasPanel}"
+		layout="grid" styleClass="ui-noborder" 
+		columnClasses="bu-padding-btn, bu-padding-btn, bu-padding-btn, bu-padding-btn, bu-padding-btn">
+						
+						
+		<p:commandButton value="#{label.inserir}" update="@form" style="width:95px"
+			rendered="#{cc.attrs.bean.visualizando or cc.attrs.bean.buscando}"
+			actionListener="#{cc.attrs.bean.novo()}" 
+			title="#{label.inserir}"/>
+
+
+		<p:commandButton value="#{label.visualizar}" update="@form" style="width:95px"
+			rendered="#{cc.attrs.bean.buscando}"
+			actionListener="#{cc.attrs.bean.visualizar()}"
+			title="#{label.visualizar}"/>
+
+
+		<p:commandButton value="#{label.atualizar}"  style="width:95px"
+			styleClass="bu-botao-verde" 			
+			rendered="#{cc.attrs.bean.buscando}"
+			actionListener="#{cc.attrs.bean.refresh()}"
+			title="#{label.atualizar}"/>
+			
+			<!--  update="tabela"-->
+						
+
+		<p:commandButton value="#{label.editar}" update="@form" style="width:95px"
+			rendered="#{cc.attrs.bean.visualizando}" immediate="true"
+			actionListener="#{cc.attrs.bean.editar()}"
+			title="#{label.editar}"/>
+
+
+		<p:commandButton value="#{label.salvar}" update="@form" style="width:95px"
+			styleClass="bu-botao-verde" resetValues="@form"
+			rendered="#{cc.attrs.bean.alterando or cc.attrs.bean.inserindo}"
+			actionListener="#{cc.attrs.bean.gravar()}" />
+
+
+		<p:commandButton value="#{label.excluir}" style="width:95px"
+			styleClass="bu-botao-vermelho" 
+			rendered="#{cc.attrs.bean.visualizando}" title="#{label.excluir}"/>
+
+
+		<p:commandButton value="#{label.cancelar}" update="@form" style="width:95px"
+			styleClass="bu-botao-laranja" immediate="true"
+			rendered="#{!cc.attrs.bean.buscando}"
+			actionListener="#{cc.attrs.bean.cancelar()}" 
+			title="#{label.cancelar}"/>			
+			
+			
+		<!--  <p:commandButton value="#{label.pesquisar}" style="width:95px"
+			styleClass="bu-botao-verde" rendered="#{cc.attrs.bean.buscando}"
+			onclick="PF('dialogFiltro').initPosition(); PF('dialogFiltro').show(); return false;"
+			title="#{label.pesquisar}"/>-->
+		
+		<cc:insertChildren>
+		
+		</cc:insertChildren>
+	</p:panelGrid>
+</cc:implementation>
+
+</html>

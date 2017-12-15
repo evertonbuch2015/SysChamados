@@ -15,18 +15,21 @@
  */
 package br.com.buch.sysChamados.view;
 
-import javax.annotation.PostConstruct;
-import java.util.Map;
-import java.util.HashMap;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
 public class GuestPreferences implements Serializable {
-    
-    private Map<String,String> themeColors;
+
+	private static final long serialVersionUID = 3718558851508169560L;
+
+	private Map<String,String> themeColors;
     
     private String theme = "indigo";
     
@@ -95,7 +98,7 @@ public class GuestPreferences implements Serializable {
         this.menuLayout = menuLayout;
     }
     
-    public Map getThemeColors() {
+    public Map<String,String> getThemeColors() {
         return this.themeColors;
     }
     

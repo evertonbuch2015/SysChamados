@@ -1,0 +1,160 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml"
+	xmlns:app="http://java.sun.com/jsf/composite/componentes">
+
+	<ui:define name="content">
+
+		<p:messages autoUpdate="true" showDetail="true" closable="true"
+			showSummary="false">
+			<p:effect type="pulsate" event="load" delay="500" />
+			<p:effect type="explode" event="load" delay="20000" />
+		</p:messages>
+
+
+		<h:panelGroup id="panelConsulta" layout="block"
+			rendered="#{programaBean.buscando}" style="margin-bottom: -14px;">
+
+			<div class="ui-g ui-fluid">
+			
+				<div class="ui-g-12 ui-md-12 ui-lg-12">		
+							
+					<div class="card card-w-title">
+						<h3>Filtros</h3>
+					</div>
+
+				</div>
+				
+			</div>
+
+		</h:panelGroup>
+
+
+		<div class="ui-g ui-fluid">
+			<div class="ui-g-12 ui-md-12 ui-lg-12">			
+				<app:barraBotoes bean="#{programaBean}"/>
+			</div>
+		</div>
+		
+		
+		<h:panelGroup id="panelTabela" layout="block"
+			rendered="#{programaBean.buscando}" style="margin-bottom: -14px;">
+
+			<div class="ui-g ui-fluid">
+			
+				<div class="ui-g-12 ui-md-12 ui-lg-12">		
+					<div class="card">
+							
+					<p:dataTable id="tabela"
+						value="#{programaBean.entidades}" var="entidade" 
+						selection="#{programaBean.entidade}" selectionMode="single"
+						rowKey="#{entidade.id}" reflow="true"									
+						
+						style="margin: -11px -8px;"
+						rows="13"
+	    				paginator="true" paginatorAlwaysVisible="false" 
+	    				paginatorPosition="bottom">				
+						
+	
+						<p:ajax event="rowDblselect" listener="#{programaBean.onRowDblClckSelect}"
+							global="false" update="@form"/>
+	
+						<p:ajax event="rowSelect" listener="#{programaBean.onRowSelect}" />
+	
+	
+						<p:column headerText="#{label.codigo}" style="text-align: center !important;"
+							width="90" sortBy="#{entidade.codigo}">
+							<h:outputText value="#{entidade.codigo}" />
+						</p:column>
+						
+						
+						<p:column headerText="#{label.descricao}" width="120" sortBy="#{entidade.descricao}">
+							<h:outputText value="#{entidade.descricao}" />
+						</p:column>
+						
+						
+						<p:column headerText="#{label.versao}" width="90" >
+							<h:outputText value="#{entidade.versao}" />
+						</p:column>
+						
+						
+						<p:column headerText="#{label.menu}" width="90" >
+							<h:outputText value="#{entidade.menu}" />
+						</p:column>
+											
+						
+						<p:column headerText="#{label.acoes}" style="text-align: center !important;"  
+							exportable="false" width="110">						
+							<p:commandButton actionListener="#{programaBean.editar(entidade)}" 
+								icon="ui-icon-pencil" update="@form"/>
+								
+							<p:commandButton actionListener="#{programaBean.excluir(entidade)}" 
+								icon="ui-icon-trash" update="@form">
+								
+								<p:confirm header="#{label.confirmacao}" 
+									message="Deseja Excluir este Registro" icon="ui-icon-alert"/>
+							</p:commandButton>
+							
+						</p:column>					
+	
+					</p:dataTable>
+					</div>
+				</div>
+				
+			</div>
+
+		</h:panelGroup>
+		
+
+		<h:panelGroup layout="block" rendered="#{! programaBean.buscando}" id="panelDados">
+
+			<div class="ui-g ui-fluid">
+
+				<div class="ui-g-12 ui-md-12 ui-lg-12">
+
+					<div class="card card-w-title">
+						<h3>InputText</h3>
+						<p:panelGrid columns="2" layout="grid"
+							styleClass="ui-panelgrid-blank form-group">
+							<h:panelGroup styleClass="md-inputfield">
+								<p:inputText />
+								<label>Name</label>
+							</h:panelGroup>
+
+							<h:panelGroup styleClass="md-inputfield">
+								<p:inputText />
+								<label>Email</label>
+							</h:panelGroup>
+
+							<h:panelGroup styleClass="md-inputfield">
+								<p:inputText />
+								<label>Phone</label>
+							</h:panelGroup>
+
+							<p:inputText placeholder="Disabled Input" disabled="true" />
+
+							<h:panelGroup styleClass="md-inputfield">
+								<p:inputText />
+								<label>Address</label>
+							</h:panelGroup>
+
+							<h:panelGroup styleClass="md-inputfield">
+								<p:calendar></p:calendar>
+								<label>Data de Entrada</label>
+							</h:panelGroup>
+
+						</p:panelGrid>
+					</div>
+
+				</div>
+
+			</div>
+
+		</h:panelGroup>
+		
+
+	</ui:define>
+
+</ui:composition>

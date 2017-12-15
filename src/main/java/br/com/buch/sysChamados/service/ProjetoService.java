@@ -6,35 +6,37 @@ import br.com.buch.sysChamados.entity.Projeto;
 import br.com.buch.sysChamados.util.NegocioException;
 import br.com.buch.sysChamados.util.PersistenciaException;
 
-public class ProjetoService<T extends Projeto> implements GenericService<T>{
+public class ProjetoService implements GenericService<Projeto>{
 
 	@Override
-	public String salvar(T entidate) throws Exception {
+	public String salvar(Projeto entidate) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String excluir(T entidade) throws Exception {
+	public String excluir(Projeto entidade) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public T carregarEntidade(Projeto entidade) throws PersistenciaException {
+	public Projeto carregarEntidade(Projeto entidade) throws PersistenciaException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<T> buscarTodos() throws Exception {
+	public List<Projeto> buscarTodos() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void consisteAntesEditar(T entidade) throws NegocioException {
+	public void consisteAntesEditar(Projeto entidade) throws NegocioException {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 }

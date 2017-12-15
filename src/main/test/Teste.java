@@ -9,12 +9,21 @@ import br.com.buch.sysChamados.dao.JPAUtil;
 import br.com.buch.sysChamados.entity.Programa;
 import br.com.buch.sysChamados.entity.Projeto;
 import br.com.buch.sysChamados.entity.Servico;
+import br.com.buch.sysChamados.service.ProjetoService;
 
 public class Teste {
 
 	public static void main(String[] args) {
 		//inserir2();
-		buscar();
+		//buscar();
+		
+		ProjetoService e = new ProjetoService();
+		try {
+			e.buscarTodos();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 	public static void inserir2() {
