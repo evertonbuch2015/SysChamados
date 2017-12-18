@@ -7,13 +7,13 @@
 
 	<ui:define name="content">
 
-		<p:messages rendered="#{!programaBean.buscando}" showDetail="true" closable="true" showSummary="false">
+		<p:messages rendered="#{!usuarioBean.buscando}" showDetail="true" closable="true" showSummary="false">
 			<p:effect type="pulsate" event="load" delay="500" />
 			<p:effect type="explode" event="load" delay="10000" />
 		</p:messages>
 		
 		
-		<p:messages rendered="#{programaBean.buscando}" for="msgValid" showDetail="true" closable="true" showSummary="false">
+		<p:messages rendered="#{usuarioBean.buscando}" for="msgValid" showDetail="true" closable="true" showSummary="false">
 			<p:effect type="pulsate" event="load" delay="500" />
 			<p:effect type="explode" event="load" delay="10000" />
 		</p:messages>
@@ -24,7 +24,7 @@
 
 
 		<h:panelGroup id="panelConsulta" layout="block"
-			rendered="#{programaBean.buscando}" style="margin-bottom: -14px;">
+			rendered="#{usuarioBean.buscando}" style="margin-bottom: -14px;">
 
 			<div class="ui-g ui-fluid">
 			
@@ -43,13 +43,13 @@
 
 		<div class="ui-g ui-fluid">
 			<div class="ui-g-12 ui-md-12 ui-lg-12">			
-				<app:barraBotoes bean="#{programaBean}"/>
+				<app:barraBotoes bean="#{usuarioBean}"/>
 			</div>
 		</div>
 		
 		
 		<h:panelGroup id="panelTabela" layout="block"
-			rendered="#{programaBean.buscando}" style="margin-bottom: -14px;">
+			rendered="#{usuarioBean.buscando}" style="margin-bottom: -14px;">
 
 			<div class="ui-g ui-fluid">
 			
@@ -57,8 +57,8 @@
 					<div class="card">
 							
 					<p:dataTable id="tabela"
-						value="#{programaBean.entidades}" var="entidade" 
-						selection="#{programaBean.entidade}" selectionMode="single"
+						value="#{usuarioBean.entidades}" var="entidade" 
+						selection="#{usuarioBean.entidade}" selectionMode="single"
 						rowKey="#{entidade.id}" reflow="true"									
 						
 						style="margin: -11px -8px;"
@@ -67,43 +67,45 @@
 	    				paginatorPosition="bottom">				
 						
 	
-						<p:ajax event="rowDblselect" listener="#{programaBean.onRowDblClckSelect}"
+						<p:ajax event="rowDblselect" listener="#{usuarioBean.onRowDblClckSelect}"
 							global="false" update="@form"/>
 	
-						<p:ajax event="rowSelect" listener="#{programaBean.onRowSelect}" update="msgGrowl"/>
+						<p:ajax event="rowSelect" listener="#{usuarioBean.onRowSelect}" update="msgGrowl"/>
 	
 	
-						<p:column headerText="#{label.codigo}" style="text-align: center !important;"
-							width="90" sortBy="#{entidade.codigo}">
-							<h:outputText value="#{entidade.codigo}" />
+						<p:column headerText="#{label.ativo}" width="80" 
+							style="text-align: center !important;">
+							
+							<p:graphicImage value="/resources/images/checked.png"
+											rendered="#{entidade.isAtivo()}" />
+							<p:graphicImage value="/resources/images/unchecked.png"
+											rendered="#{not entidade.isAtivo()}"/>
 						</p:column>
 						
 						
-						<p:column headerText="#{label.descricao}" width="120" sortBy="#{entidade.descricao}">
-							<h:outputText value="#{entidade.descricao}" />
+						<p:column headerText="#{label.nome}" sortBy="#{entidade.nomeColaborador}">
+							<h:outputText value="#{entidade.nomeColaborador}"/>
 						</p:column>
-						
-						
-						<p:column headerText="#{label.versao}" width="90" >
-							<h:outputText value="#{entidade.versao}" />
+		
+						<p:column headerText="#{label.nome_usuario}" sortBy="#{entidade.nomeUsuario}">
+							<h:outputText value="#{entidade.nomeUsuario}"/>
 						</p:column>
-						
-						
-						<p:column headerText="#{label.menu}" width="90" >
-							<h:outputText value="#{entidade.menu}" />
+		
+						<p:column headerText="#{label.grupo}">
+							<h:outputText value="#{entidade.grupo}"/>
 						</p:column>
 											
 						
 						<p:column headerText="#{label.acoes}" style="text-align: center !important;"  
 							exportable="false" width="60">						
-							<p:commandButton actionListener="#{programaBean.editar(entidade)}" 
+							<p:commandButton actionListener="#{usuarioBean.editar(entidade)}" 
 								icon="ui-icon-pencil" update="@form"/>
 								
-							<p:commandButton actionListener="#{programaBean.excluir(entidade)}" 
+							<p:commandButton actionListener="#{usuarioBean.excluir(entidade)}" 
 								icon="ui-icon-trash" update="@form">
 								
 								<p:confirm header="#{label.confirmacao}" 
-									message="Deseja Excluir este Registro" icon="ui-icon-alert"/>
+									message="Deseja excluir este usuário?" icon="ui-icon-alert"/>
 							</p:commandButton>
 							
 						</p:column>					
@@ -117,60 +119,67 @@
 		</h:panelGroup>
 		
 
-		<h:panelGroup layout="block" rendered="#{! programaBean.buscando}" id="panelDados">
+		<h:panelGroup layout="block" rendered="#{! usuarioBean.buscando}" id="panelDados">
 
 			<div class="ui-g ui-fluid">
 
 				<div class="ui-g-12 ui-md-12 ui-lg-12">
 
 					<div class="card card-w-title">
-						<h3>#{label.codigo} : #{programaBean.entidade.codigo}</h3>
+						<h3>#{label.codigo} : #{usuarioBean.entidade.id}</h3>
 						
 						<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank form-group">
 							
 							<h:panelGroup styleClass="md-inputfield">
-								<p:inputText value="#{programaBean.entidade.descricao}"
-									readonly="#{programaBean.visualizando}" 
+								<p:inputText value="#{usuarioBean.entidade.nomeColaborador}"
+									readonly="#{usuarioBean.visualizando}" 
 									required="true" requiredMessage="#{message.msg_valid_01}"/>
-								<label>#{label.descricao}</label>
+								<label>#{label.nome}</label>
 							</h:panelGroup>
 
 
 							<h:panelGroup styleClass="md-inputfield">
 								<p:inputText id="idVersao" 
-									value="#{programaBean.entidade.versao}"
-									readonly="#{programaBean.visualizando}" 
+									value="#{usuarioBean.entidade.nomeUsuario}"
+									readonly="#{usuarioBean.visualizando}" 
 									required="true" requiredMessage="#{message.msg_valid_02}"/>
-								<label>#{label.versao}</label>
+								<label>#{label.nome_usuario}</label>
 							</h:panelGroup>
 
 
 							<h:panelGroup styleClass="md-inputfield">
-								<p:inputText value="#{programaBean.entidade.menu}"
-									readonly="#{programaBean.visualizando}" 
+								<p:inputText value="#{usuarioBean.entidade.email}"
+									readonly="#{usuarioBean.visualizando}" 
 									required="true" requiredMessage="#{message.msg_valid_03}"/>
-								<label>#{label.menu}</label>
+								<label>#{label.email}</label>
 							</h:panelGroup>	
-													
 							
-							<h:panelGrid columns="2">
-								<label class="bu-label" style="margin-right: 5px">#{label.programa_aux}</label>							
-        						<p:inputSwitch value="#{programaBean.entidade.programaAuxiliar}" 
-        							disabled="#{programaBean.visualizando}"/>
-								
-							</h:panelGrid>		
+							
+							<h:panelGroup styleClass="md-inputfield">
+								<p:password id="senha" 
+									value="#{usuarioBean.entidade.senha}" 
+									feedback="true"
+									required="true" readonly="#{usuarioBean.visualizando}"
+									requiredMessage="Informe a senha!" redisplay="true">
+								</p:password>
+								<label>#{label.senha}</label>
+							</h:panelGroup>						
 
 							
 							<h:panelGroup>
 								<label for="setor" class="bu-label">#{label.menu}</label>
 								<p:selectOneMenu id="setor" 
-									value="#{programaBean.entidade.menu}" 
+									value="#{usuarioBean.entidade.setor}" 
 									editable="true" autoWidth="false"
-									disabled="#{programaBean.visualizando}"> 
-									<f:selectItems value="#{programaBean.menus}" />
+									disabled="#{usuarioBean.visualizando}"> 
+									<f:selectItems value="#{usuarioBean.setores}" />
 								</p:selectOneMenu>
 								
 							</h:panelGroup>
+							
+							
+							
+							
 
 						</p:panelGrid>
 					</div>

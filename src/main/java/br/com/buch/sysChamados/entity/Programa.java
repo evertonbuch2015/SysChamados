@@ -14,6 +14,9 @@ public class Programa extends Projeto implements Serializable{
 
 	private static final long serialVersionUID = -157972869827725258L;
 
+	public Programa() {
+		this.programaAuxiliar = false;
+	}
 	
 	@Column(name = "VERSAO", length = 20, nullable = false)
 	private String versao;
@@ -23,11 +26,10 @@ public class Programa extends Projeto implements Serializable{
 	private String menu;
 	
 	
-	@Column(name = "PROGRAMA_AUXILIAR", length = 1, nullable = false)
-	private Character programaAuxiliar;
+	@Column(name = "PROGRAMA_AUXILIAR")
+	private Boolean programaAuxiliar;
 	
 	//--------------------------------	GETs and SETs------------------------------//
-	
 	
 	public String getVersao() {return versao;}	
 	public void setVersao(String versao) {this.versao = versao;}
@@ -37,6 +39,7 @@ public class Programa extends Projeto implements Serializable{
 	public void setMenu(String menu) {this.menu = menu;}
 	
 	
-	public Character getProgramaAuxiliar() {return programaAuxiliar;}	
-	public void setProgramaAuxiliar(Character programaAuxiliar) {this.programaAuxiliar = programaAuxiliar;}
+	public Boolean getProgramaAuxiliar() {return programaAuxiliar;}
+	public void setProgramaAuxiliar(Boolean programaAuxiliar) {this.programaAuxiliar = programaAuxiliar;}
+	
 }

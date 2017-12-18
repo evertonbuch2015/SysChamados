@@ -36,7 +36,7 @@ public class Teste {
 			entity.setCodigo(1590);
 			entity.setDescricao("teste1");
 			entity.setMenu("Teste1");
-			entity.setProgramaAuxiliar('N');
+			//entity.setProgramaAuxiliar('N');
 			entity.setVersao("1.8.22.15");
 
 			GenericDao.save(em, entity);
@@ -45,7 +45,7 @@ public class Teste {
 			entity2.setCodigo(1900);
 			entity2.setDescricao("teste2");
 			entity2.setMenu("Teste2");
-			entity2.setProgramaAuxiliar('N');
+			//entity2.setProgramaAuxiliar('N');
 			entity2.setVersao("1.8.23.15");
 
 			GenericDao.save(em, entity2);
@@ -75,7 +75,7 @@ public class Teste {
 		entity.setCodigo(100);
 		entity.setDescricao("teste");
 		entity.setMenu("Teste");
-		entity.setProgramaAuxiliar('N');
+		//entity.setProgramaAuxiliar('N');
 		entity.setVersao("1.8.22.12");
 
 		try {

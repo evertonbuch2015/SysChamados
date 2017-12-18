@@ -169,7 +169,7 @@ public abstract class GenericDao {
 	 * @param id
 	 * @return
 	 */
-	public static <T> T findById(Class<T> aClass, Integer id) throws Exception {
+	public static <T> T findById(Class<T> aClass, Long id) throws Exception {
 
 		EntityManager em = getEntityManager();
 		em.getTransaction().begin();
@@ -198,7 +198,7 @@ public abstract class GenericDao {
 	 * 
 	 * @return T
 	 */
-	public static <T> T findById(EntityManager em, Class<T> aClass, Integer id) throws Exception {
+	public static <T> T findById(EntityManager em, Class<T> aClass, Long id) throws Exception {
 		T entity = null;
 		entity = (T) em.find(aClass, id);
 		return entity;

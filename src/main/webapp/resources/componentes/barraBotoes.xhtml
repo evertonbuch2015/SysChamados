@@ -22,52 +22,47 @@
 		<p:commandButton value="#{label.inserir}" update="@form" style="width:95px"
 			rendered="#{cc.attrs.bean.visualizando or cc.attrs.bean.buscando}"
 			actionListener="#{cc.attrs.bean.novo()}" 
-			title="#{label.inserir}"/>
+			title="#{message.msg_inserir}"/>
 
 
 		<p:commandButton value="#{label.visualizar}" update="@form" style="width:95px"
 			rendered="#{cc.attrs.bean.buscando}"
 			actionListener="#{cc.attrs.bean.visualizar()}"
-			title="#{label.visualizar}"/>
+			title="#{message.msg_visualizar}"/>
 
 
 		<p:commandButton value="#{label.atualizar}"  style="width:95px"
-			styleClass="bu-botao-verde" 			
+			styleClass="bu-botao-verde" update="@form"		
 			rendered="#{cc.attrs.bean.buscando}"
 			actionListener="#{cc.attrs.bean.refresh()}"
-			title="#{label.atualizar}"/>
-			
-			<!--  update="tabela"-->
+			title="#{message.msg_atualizar}"/>
 						
 
 		<p:commandButton value="#{label.editar}" update="@form" style="width:95px"
 			rendered="#{cc.attrs.bean.visualizando}" immediate="true"
 			actionListener="#{cc.attrs.bean.editar()}"
-			title="#{label.editar}"/>
+			title="#{message.msg_editar}"/>
 
 
 		<p:commandButton value="#{label.salvar}" update="@form" style="width:95px"
 			styleClass="bu-botao-verde" resetValues="@form"
 			rendered="#{cc.attrs.bean.alterando or cc.attrs.bean.inserindo}"
-			actionListener="#{cc.attrs.bean.gravar()}" />
+			actionListener="#{cc.attrs.bean.gravar()}"
+			title="#{message.msg_salvar}"/>
 
 
-		<p:commandButton value="#{label.excluir}" style="width:95px"
-			styleClass="bu-botao-vermelho" 
-			rendered="#{cc.attrs.bean.visualizando}" title="#{label.excluir}"/>
+		<p:commandButton value="#{label.excluir}" update="@form" style="width:95px"
+			styleClass="bu-botao-vermelho" title="#{message.msg_excluir}" 			
+			rendered="#{cc.attrs.bean.visualizando}"
+			actionListener="#{cc.attrs.bean.excluir()}"/>
 
 
-		<p:commandButton value="#{label.cancelar}" update="@form" style="width:95px"
+		<p:commandButton value="#{(cc.attrs.bean.alterando or cc.attrs.bean.inserindo) ? label.cancelar : label.voltar}" 
+			update="@form" style="width:95px"
 			styleClass="bu-botao-laranja" immediate="true"
 			rendered="#{!cc.attrs.bean.buscando}"
 			actionListener="#{cc.attrs.bean.cancelar()}" 
-			title="#{label.cancelar}"/>			
-			
-			
-		<!--  <p:commandButton value="#{label.pesquisar}" style="width:95px"
-			styleClass="bu-botao-verde" rendered="#{cc.attrs.bean.buscando}"
-			onclick="PF('dialogFiltro').initPosition(); PF('dialogFiltro').show(); return false;"
-			title="#{label.pesquisar}"/>-->
+			title="#{(cc.attrs.bean.alterando or cc.attrs.bean.inserindo) ? message.msg_cancelar : message.msg_voltar_lista}"/>
 		
 		<cc:insertChildren>
 		

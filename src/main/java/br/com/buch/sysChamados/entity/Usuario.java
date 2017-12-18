@@ -64,6 +64,23 @@ public class Usuario implements Serializable, BaseEntity {
 	@Column(name = "EM_FERIAS")
 	private Character emFerias;
 
+	
+	@Column(name = "THEME", length = 20)
+	private String theme;			// 
+	
+		
+	@Column(name = "MENU_CLASS", length = 20)
+	private String menuClass;		//null or layout-menu-dark
+	
+		
+	@Column(name = "MENU_LAYOUT", length = 20)
+	private String menuLayout;		//overlay, horizontal or static
+	
+	
+	@Column(name = "PROFILE_MODE", length = 20)
+	private String profile_mode;	//inline or overlay
+	
+	
 	// -------------------------------- GETs and SETs------------------------------//
 
 	@Override
@@ -82,8 +99,8 @@ public class Usuario implements Serializable, BaseEntity {
 	public void setNomeUsuario(String nomeUsuario) {this.nomeUsuario = nomeUsuario;}
 
 	
-	public GrupoUsuario getGrupoUsuario() {return grupo;}
-	public void setGrupoUsuario(GrupoUsuario grupo) {this.grupo = grupo;}
+	public GrupoUsuario getGrupo() {return grupo;}
+	public void setGrupo(GrupoUsuario grupo) {this.grupo = grupo;}
 
 	
 	public String getSetor() {return setor;}
@@ -123,9 +140,49 @@ public class Usuario implements Serializable, BaseEntity {
 		
 		return ativo.equals('S') ? true : false;
 	}
-	
-	// -------------------------------- Métodos Auxiliares------------------------------//
 
 	
+	public String getTheme() {return theme;}
+	public void setTheme(String theme) {this.theme = theme;}
+
 	
+	public String getMenuClass() {return menuClass;}
+	public void setMenuClass(String menuClass) {this.menuClass = menuClass;}
+
+	
+	public String getMenuLayout() {return menuLayout;}
+	public void setMenuLayout(String menuLayout) {this.menuLayout = menuLayout;}
+
+	
+	public String getProfile_mode() {return profile_mode;}
+	public void setProfile_mode(String profile_mode) {this.profile_mode = profile_mode;}
+
+	
+	// -------------------------------- Métodos Auxiliares------------------------------//
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
 }

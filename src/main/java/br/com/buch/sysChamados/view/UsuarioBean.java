@@ -6,22 +6,22 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import br.com.buch.sysChamados.entity.Programa;
-import br.com.buch.sysChamados.service.ProgramaService;
+import br.com.buch.sysChamados.entity.Usuario;
+import br.com.buch.sysChamados.service.UsuarioService;
 
 
 @ManagedBean
 @ViewScoped
-public class ProgramaBean extends GenericBean<Programa, ProgramaService> implements Serializable{
+public class UsuarioBean extends GenericBean<Usuario, UsuarioService> implements Serializable{
 
 	private static final long serialVersionUID = -8165871784161603162L;
 	
-	private List<String> menus;
+	private List<String> setores;
 	//Filtros
 	
 	
-	public ProgramaBean() {
-		super(new ProgramaService());	
+	public UsuarioBean() {
+		super(new UsuarioService());	
 	}
 	
 	
@@ -35,23 +35,23 @@ public class ProgramaBean extends GenericBean<Programa, ProgramaService> impleme
 
 
 	@Override
-	public Programa criarEntidade() {
-		return new Programa();
+	public Usuario criarEntidade() {
+		return new Usuario();
 	}
 	
 	
 	// =============================GET AND SET=====================================
 	
 	@Override
-	public List<Programa> getEntidades() {	
+	public List<Usuario> getEntidades() {	
 		return super.getEntidades();
 	}
 
 	
-	public List<String> getMenus() throws Exception{
-		if(this.menus == null){
-			this.menus = service.buscarMenus();
+	public List<String> getSetores() throws Exception{
+		if(this.setores == null){
+			this.setores = service.buscarSetores();
 		}
-		return menus;
+		return setores;
 	}
 }

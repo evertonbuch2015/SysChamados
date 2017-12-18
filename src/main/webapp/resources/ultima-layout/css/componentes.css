@@ -11,6 +11,10 @@
 }
 
 
+.bu-label{
+	margin-left: 6px;
+	color: #999;
+}
 /******************* INICIO BOTOES ***************/
 .bu-botao-toggle{
 	margin-right: 20px !important;

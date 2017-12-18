@@ -332,20 +332,20 @@
   text-align: center;
   width: 350px;
   min-height: 440px;
-  padding: 50px 20px;
-  margin: 100px auto 0 auto; }
+  padding: 20px 10px;
+  margin: 150px auto 0 auto; }
   .login-panel .ui-g .ui-g-12 {
     padding: 25px 40px; }
     .login-panel .ui-g .ui-g-12 .ui-button {
       margin-bottom: 20px; }
 
 .login-footer {
-  position: absolute;
+  position: inherit;
   bottom: 10px;
   font-size: 16px;
   width: 100%;
   text-align: center;
-  color: #757575; }
+  color: #463a68; }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .login-body {
@@ -355,13 +355,13 @@
   .login-panel {
     text-align: center;
     min-height: 440px;
-    margin: 100px auto 0 auto; } }
+    margin: 150px auto 0 auto; } }
 @media (max-width: 640px) {
   .login-panel {
     text-align: center;
     width: 300px;
     min-height: 440px;
-    padding: 40px 20px;
+    padding: 20px 20px;
     margin: 75px auto 0 auto; }
     .login-panel .ui-g .ui-g-12 {
       padding: 20px 20px; }
@@ -882,9 +882,9 @@ body {
     filter: alpha(opacity=30); }
   .layout-wrapper .layout-menu .profile {
     box-sizing: border-box;
-    padding-top: 30px;
+    padding-top: 15px;
     width: 250px;
-    height: 145px;
+    height: 110px;
     text-align: center;
     background: url("#{resource['ultima-layout:images/profile-bg.png']}") top left no-repeat;
     background-size: 250px 145px;
@@ -1049,7 +1049,8 @@ body {
     .layout-wrapper .ultima-menu li ul li ul ul ul ul li a {
       padding-left: 96px; }
 .layout-wrapper .footer {
-  padding: .5em; }
+  padding: .5em;
+  margin-top: 20px; }
   .layout-wrapper .footer .footer-text-left {
     float: left; }
   .layout-wrapper .footer .footer-text-right {
@@ -1401,16 +1402,16 @@ body.layout-compact {
   body.layout-compact .ui-icon {
     font-size: 20px; }
   body.layout-compact .card {
-    padding: 16px;
+    padding: 8px 8px;
     margin-bottom: 16px;
     box-sizing: border-box; }
     body.layout-compact .card.card-w-title {
-      padding-bottom: 26px; }
+      padding-bottom: 14px; }
     body.layout-compact .card h1 {
       font-size: 22px;
       margin: 22px 0; }
       body.layout-compact .card h1:first-child {
-        margin-top: 10px; }
+        margin-top: 10px 8px; }
     body.layout-compact .card h2 {
       font-size: 20px; }
     body.layout-compact .card h3 {
@@ -1434,14 +1435,14 @@ body.layout-compact {
   body.layout-compact .ui-panel.ui-panel-collapsed-h .ui-panel-titlebar {
     padding-left: 40px; }
   body.layout-compact .ui-button {
-    font-size: 14px;
+    font-size: 13px;
     height: 30px;
     padding: 0 14px; }
     body.layout-compact .ui-button .ui-button-text {
       line-height: 30px; }
     body.layout-compact .ui-button.ui-button-icon-only {
-      width: 32px;
-      height: 32px; }
+      width: 38px;
+      height: 30px; }
       body.layout-compact .ui-button.ui-button-icon-only .ui-icon {
         width: 20px;
         height: 20px;
@@ -1671,7 +1672,7 @@ body.layout-compact {
   body.layout-compact .ui-datatable tfoot td {
     padding: 6px 10px; }
   body.layout-compact .ui-datatable tbody tr.ui-widget-content td {
-    padding: 6px 10px; }
+    padding: 2px 10px; }
   body.layout-compact .ui-datatable > .ui-icon-arrowthick-1-s {
     font-size: 18px; }
   body.layout-compact .ui-datatable.ui-datatable-scrollable .ui-datatable-scrollable-theadclone th {

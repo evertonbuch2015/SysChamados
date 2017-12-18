@@ -10,16 +10,16 @@ import br.com.buch.sysChamados.util.NegocioException;
 import br.com.buch.sysChamados.util.UtilMensagens;
 
 
-public abstract class GenericBean<T extends BaseEntity> {
+public abstract class GenericBean<T extends BaseEntity, S extends GenericService<T>> {
 	
 	public enum EstadoTela {INSERINDO, ALTERANDO, BUSCANDO, VISUALIZANDO}	
 	private EstadoTela estadoTela = EstadoTela.BUSCANDO;
 	
 	protected T entidade;
 	protected List<T> entidades;
-	protected GenericService<T> service;
+	protected S service;
 	
-	public GenericBean(GenericService<T> service) {
+	public GenericBean(S service) {
 		this.service = service;
 	}
 	
@@ -62,10 +62,10 @@ public abstract class GenericBean<T extends BaseEntity> {
 			UtilMensagens.mensagemInformacao(mensagem);
 		}
 		catch (NegocioException e) {
-			UtilMensagens.mensagemAtencao(e.getMessage());
+			UtilMensagens.mensagemAtencao("msgValid", e.getMessage());
 		}
 		catch (Exception e) {
-			UtilMensagens.mensagemErro(e.getMessage());
+			UtilMensagens.mensagemErro("msgValid", e.getMessage());
 		}
 	}
 	
@@ -79,10 +79,10 @@ public abstract class GenericBean<T extends BaseEntity> {
 			UtilMensagens.mensagemInformacao("Exclusão Realizada com Sucesso");
 		}
 		catch (NegocioException e) {
-			UtilMensagens.mensagemAtencao(e.getMessage());
+			UtilMensagens.mensagemAtencao("msgValid", e.getMessage());
 		}
 		catch (Exception e) {
-			UtilMensagens.mensagemErro(e.getMessage());
+			UtilMensagens.mensagemErro("msgValid", e.getMessage());
 		}
 		
 	}
@@ -97,10 +97,10 @@ public abstract class GenericBean<T extends BaseEntity> {
 			UtilMensagens.mensagemInformacao("Exclusão Realizada com Sucesso");
 		}
 		catch (NegocioException e) {
-			UtilMensagens.mensagemAtencao(e.getMessage());
+			UtilMensagens.mensagemAtencao("msgValid", e.getMessage());
 		}
 		catch (Exception e) {
-			UtilMensagens.mensagemErro(e.getMessage());
+			UtilMensagens.mensagemErro("msgValid", e.getMessage());
 		}
 	}
 		
@@ -113,7 +113,7 @@ public abstract class GenericBean<T extends BaseEntity> {
 			this.entidades = service.buscarTodos();
 			
 		} catch (Exception e) {
-			UtilMensagens.mensagemErro(e.getMessage());
+			UtilMensagens.mensagemErro("msgValid", e.getMessage());
 		}
 	}
 
@@ -127,14 +127,14 @@ public abstract class GenericBean<T extends BaseEntity> {
 	public void editar(){
 		try {
 			service.consisteAntesEditar(this.entidade);
-			service.carregarEntidade(this.entidade);		
+			this.entidade = service.carregarEntidade(this.entidade);		
 			mudarAlterar();			
 		}
 		catch (NegocioException ex) {
-			UtilMensagens.mensagemAtencao(ex.getMessage());
+			UtilMensagens.mensagemAtencao("msgValid", ex.getMessage());
 		}
 		catch (Exception e) {
-			UtilMensagens.mensagemErro(e.getMessage());
+			UtilMensagens.mensagemErro("msgValid", e.getMessage());
 		}
 	}
 	
@@ -142,14 +142,14 @@ public abstract class GenericBean<T extends BaseEntity> {
 	public void editar(T entidade){					
 		try {
 			service.consisteAntesEditar(entidade);			
-			service.carregarEntidade(entidade);		
+			this.entidade = service.carregarEntidade(entidade);		
 			mudarAlterar();			
 		}
 		catch (NegocioException ex) {
-			UtilMensagens.mensagemAtencao(ex.getMessage());
+			UtilMensagens.mensagemAtencao("msgValid", ex.getMessage());
 		}
 		catch (Exception e) {
-			UtilMensagens.mensagemErro(e.getMessage());
+			UtilMensagens.mensagemErro("msgValid", e.getMessage());
 		}
 	}
 	
@@ -163,10 +163,10 @@ public abstract class GenericBean<T extends BaseEntity> {
 	public void visualizar(){
 		try {			
 			if(this.entidade != null){
-				service.carregarEntidade(entidade);
+				this.entidade = service.carregarEntidade(entidade);
 				mudarVisualizar();
 			}else{
-				UtilMensagens.mensagemInformacao("Selecione um registro da lista!");
+				UtilMensagens.mensagemInformacao("mensagemGrowl", "Selecione um registro da lista!");
 			}
 			
 		} catch (Exception e) {

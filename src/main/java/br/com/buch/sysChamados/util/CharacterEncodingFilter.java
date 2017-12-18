@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.buch.sysChamados.filter;
+package br.com.buch.sysChamados.util;
 
 import java.io.IOException;
 
