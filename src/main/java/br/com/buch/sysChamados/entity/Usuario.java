@@ -59,10 +59,10 @@ public class Usuario implements Serializable, BaseEntity {
 	private String setor;
 
 	@Column(name = "ATIVO")
-	private Character ativo;
+	private Boolean ativo;
 
 	@Column(name = "EM_FERIAS")
-	private Character emFerias;
+	private Boolean emFerias;
 
 	
 	@Column(name = "THEME", length = 20)
@@ -91,6 +91,7 @@ public class Usuario implements Serializable, BaseEntity {
 		this.id = id;
 	}
 	
+	
 	public String getNomeColaborador() {return nomeColaborador;}
 	public void setNomeColaborador(String nomeColaborador) {this.nomeColaborador = nomeColaborador;}
 
@@ -108,39 +109,25 @@ public class Usuario implements Serializable, BaseEntity {
 	public void setSetor(String setor) {this.setor = setor;}
 
 	
-	public Character getAtivo() {return ativo;}
-	
-	public void setAtivo(Character ativo) {this.ativo = ativo;}
-	
-	
-	public Character getEmFerias() {return emFerias;}
+	public Boolean getAtivo() {return ativo;}
+	public void setAtivo(Boolean ativo) {this.ativo = ativo;}
 
-	public void setEmFerias(Character emFerias) {this.emFerias = emFerias;}
+	
+	public Boolean getEmFerias() {return emFerias;}
+	public void setEmFerias(Boolean emFerias) {this.emFerias = emFerias;}
 
 	
 	public String getSenha() {return senha;}
-
 	public void setSenha(String senha) {this.senha = senha;}
 	
 	
 	public String getEmail() {return email;}
-
 	public void setEmail(String email) {this.email = email;}
 
 
 	public String getFraseSecreta() {return fraseSecreta;}
-
 	public void setFraseSecreta(String fraseSecreta) {this.fraseSecreta = fraseSecreta;}
 	
-	
-
-	public Boolean isAtivo() {
-		if (this.ativo == null)
-			return null;
-		
-		return ativo.equals('S') ? true : false;
-	}
-
 	
 	public String getTheme() {return theme;}
 	public void setTheme(String theme) {this.theme = theme;}

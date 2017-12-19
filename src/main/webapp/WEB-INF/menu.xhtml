@@ -58,21 +58,13 @@
                     <pu:menu widgetVar="me">
                         <p:menuitem id="um_dashboard" value="Dashboard" icon="&#xE871;" outcome="/dashboard"/>
                                                 
-                        <p:submenu id="um_cadastros" label="#{label.cadastros}" icon="&#xe869;">
-                            <p:menuitem id="um_programas" value="#{label.programas}" icon="&#xE30B;" outcome="/programas" />
-                            <p:menuitem id="um_servicos" value="#{label.servicos}" icon="&#xE30B;" outcome="/servicos" />
+                        <p:submenu id="um_cadastros" label="#{label.cadastros}" icon="&#xe869;">                            
+                            <p:menuitem id="me_usuarios" value="#{label.usuarios}" icon="&#xe7fe;" outcome="/usuarios" />
                         </p:submenu>
                         
-                        <p:submenu id="um_components" label="Components" icon="&#xE896;">
+                        <p:submenu id="um_suporte" label="Components" icon="&#xE896;">
                             <p:menuitem id="um_sample" value="Sample Page" icon="&#xE30B;" outcome="/sample" />
                             <p:menuitem id="um_forms" value="Forms" icon="&#xE890;" outcome="/forms" />
-                        </p:submenu>
-                        
-                        <p:submenu id="um_default" label="Template Pages" icon="&#xE884;">
-                            <p:menuitem id="um_empty" value="Empty Page" icon="&#xE88B;" outcome="/empty" />
-                            <p:menuitem id="um_error" value="Error Page" icon="&#xE000;" outcome="/error" />
-                            <p:menuitem id="um_404" value="404 Page" icon="&#xE001;" outcome="/404" />
-                            <p:menuitem id="um_access" value="Access Denied Page" icon="&#xE32A;" outcome="/access" />
                         </p:submenu>
                     </pu:menu>
                 </div>

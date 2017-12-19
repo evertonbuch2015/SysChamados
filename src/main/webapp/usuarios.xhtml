@@ -77,9 +77,9 @@
 							style="text-align: center !important;">
 							
 							<p:graphicImage value="/resources/images/checked.png"
-											rendered="#{entidade.isAtivo()}" />
+											rendered="#{entidade.ativo}" />
 							<p:graphicImage value="/resources/images/unchecked.png"
-											rendered="#{not entidade.isAtivo()}"/>
+											rendered="#{not entidade.ativo}"/>
 						</p:column>
 						
 						
@@ -97,12 +97,14 @@
 											
 						
 						<p:column headerText="#{label.acoes}" style="text-align: center !important;"  
-							exportable="false" width="60">						
+							exportable="false" width="80">						
 							<p:commandButton actionListener="#{usuarioBean.editar(entidade)}" 
-								icon="ui-icon-pencil" update="@form"/>
+								icon="ui-icon-pencil" update="@form"
+								title="#{message.msg_editar}"/>
 								
 							<p:commandButton actionListener="#{usuarioBean.excluir(entidade)}" 
-								icon="ui-icon-trash" update="@form">
+								icon="ui-icon-trash" update="@form"
+								title="#{message.msg_excluir}">
 								
 								<p:confirm header="#{label.confirmacao}" 
 									message="Deseja excluir este usuário?" icon="ui-icon-alert"/>
@@ -167,7 +169,7 @@
 
 							
 							<h:panelGroup>
-								<label for="setor" class="bu-label">#{label.menu}</label>
+								<label for="setor" class="bu-label">#{label.setor}</label>
 								<p:selectOneMenu id="setor" 
 									value="#{usuarioBean.entidade.setor}" 
 									editable="true" autoWidth="false"
@@ -178,8 +180,32 @@
 							</h:panelGroup>
 							
 							
+							<h:panelGroup>
+								<label for="setor" class="bu-label">#{label.grupo_usuario}</label>
+								<p:selectOneMenu id="grupo" 
+									value="#{usuarioBean.entidade.grupo}" 
+									editable="true" autoWidth="false"
+									disabled="#{usuarioBean.visualizando}"> 
+									<f:selectItems value="#{usuarioBean.gruposUsuario}" />
+								</p:selectOneMenu>
+								
+							</h:panelGroup>							
 							
 							
+							<h:panelGrid columns="2">
+								<label class="bu-label" style="margin-right: 5px">#{label.em_ferias}</label>							
+        						<p:inputSwitch value="#{usuarioBean.entidade.emFerias}" 
+        							disabled="#{usuarioBean.visualizando}"/>
+								
+							</h:panelGrid>	
+							
+							
+							<h:panelGrid columns="2">
+								<label class="bu-label" style="margin-right: 5px">#{label.ativo}</label>							
+        						<p:inputSwitch value="#{usuarioBean.entidade.ativo}" 
+        							disabled="#{usuarioBean.visualizando}"/>
+								
+							</h:panelGrid>
 
 						</p:panelGrid>
 					</div>

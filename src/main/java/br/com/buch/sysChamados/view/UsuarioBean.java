@@ -6,6 +6,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import br.com.buch.sysChamados.entity.GrupoUsuario;
 import br.com.buch.sysChamados.entity.Usuario;
 import br.com.buch.sysChamados.service.UsuarioService;
 
@@ -54,4 +55,7 @@ public class UsuarioBean extends GenericBean<Usuario, UsuarioService> implements
 		}
 		return setores;
 	}
+
+	
+	public GrupoUsuario[] getGruposUsuario(){return GrupoUsuario.values();}
 }
